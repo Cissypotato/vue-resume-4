@@ -17,6 +17,68 @@ const router = new VueRouter({
   routes // (缩写，ES6语法) 相当于 routes: routes
 })
 
+const store = new Vuex.Store({
+    state: {
+        currentUser:{email:undefined,objectId:undefined},
+        shareLink:"unknown",
+        mode:'edit',
+        resume:{
+            name:"姓名",
+            jobIntention:"求职意向",
+            birthday:"年龄",
+            gender:"性别",
+            email:"邮箱",
+            phone:"手机",
+            skills:[
+                {name:"1",description:"11"},
+                {name:"2",description:"22"},
+                {name:"3",description:"33"},
+                {name:"4",description:"44"},
+            ],
+            projects:[
+                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+            ]
+        },
+        previewResume:{
+            name:"姓名",
+            jobIntention:"求职意向",
+            birthday:"年龄",
+            gender:"性别",
+            email:"邮箱",
+            phone:"手机",
+            skills:[
+                {name:"1",description:"11"},
+                {name:"2",description:"22"},
+                {name:"3",description:"33"},
+                {name:"4",description:"44"},
+            ],
+            projects:[
+                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+            ] 
+        },
+    },
+
+    
+    mutations: {
+        getResume(state,user){
+            var query = new AV.Query('User');
+             query.get(user.objectId).then( (loginedUser)=> {
+                loginedUser=loginedUser.toJSON()
+                state.resume= loginedUser.resume 
+                
+            }, function (error) {
+                // 异常处理
+            });
+
+        },
+        changeMode(state,aaa){
+            state.mode=aaa
+        }
+
+    }
+  })
 
 
 
@@ -25,19 +87,21 @@ const router = new VueRouter({
 var app = new Vue({
     router:router,
     el: '#app',
+    store:store,
     data: { 
-        currentUser:{email:undefined,objectId:undefined},
+        // currentUser:{email:undefined,objectId:undefined},
+        // editing:false,
+        
     },
-    
-    watch:{
-        'currentUser.objectId':function(newValue,oldValue){
-            if(newValue){
-                this.getResume(this.currentUser).then((resume)=>{
-                    this.resume=resume
-                })
-            }
-        }
-    },
+    // watch:{
+    //     'currentUser.objectId':function(newValue,oldValue){
+    //         if(newValue){
+    //             this.getResume(this.currentUser).then((resume)=>{
+    //                 this.resume=resume
+    //             })
+    //         }
+    //     }
+    // },
     methods:{
    
         getResume(user){
@@ -58,16 +122,25 @@ var app = new Vue({
 })
 
 
+
+
+//
 //获取当前用户
 let currentUser=AV.User.current()
 if (currentUser){
-    app.currentUser=currentUser.toJSON() 
-    app.shareLink=location.origin+location.pathname+'?user_id='+app.currentUser.objectId
-    app.getResume(app.currentUser).then(resume =>{
-        app.resume=resume
-    })
-    console.log(app.currentUser)
+    store.state.currentUser=currentUser.toJSON() 
+    console.log(store.state.currentUser)
+    store.state.shareLink=location.origin+location.pathname+'?user_id='+store.state.currentUser.objectId
+    store.commit("getResume",store.state.currentUser)
+    // .then((resume) =>{
+    //     console.log(resume)
+    //     app.data().resume = resume 
+    //     console.log(app.data().resume)
+    // })
+    
 }
+
+
 
 //获取预览用户Id
 let search=location.search
@@ -78,21 +151,15 @@ let userId
 
 if(matches){
     userId=matches[1]
-    app.mode="preview"
-    app.getResume({objectId:userId}).then(resume=>{
-        app.previewResume=resume
-    })
+    store.commit('changeMode',"preview")
+    store.commit('getResume',{objectId:userId})
+    // app.getResume({objectId:userId}).then(resume=>{
+    //     app.previewResume=resume
+    // })
     console.log('预览模式')
-    console.log(app.mode)
+    console.log(store.state.mode)
 }else{
-    console.log('登录模式')
+    console.log('编辑模式')
 }
 
-//
 
-
-
-// const app = new Vue({
-//   router:router,//也可以根据ES6语法直接写router
-//   el:"#app"
-// })

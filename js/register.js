@@ -2,10 +2,29 @@
 window.Register={
     data:function(){
         return {
+            store:store,
             register:{
                 email:'',
                 password:''
-            }
+            },
+            resume:{
+                name:"姓名",
+                jobIntention:"求职意向",
+                birthday:"年龄",
+                gender:"性别",
+                email:"邮箱",
+                phone:"手机",
+                skills:[
+                    {name:"1",description:"11"},
+                    {name:"2",description:"22"},
+                    {name:"3",description:"33"},
+                    {name:"4",description:"44"},
+                ],
+                projects:[
+                    {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+                    {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+                ]
+            },
         }
     },
    methods:{
@@ -17,16 +36,20 @@ window.Register={
         user.setPassword(this.register.password);
         // 设置邮箱
         user.setEmail(this.register.email);
+        user.set('resume', this.resume);
         user.signUp().then( (loggedInUser)=> {
             user=loggedInUser.toJSON()
-            this.$emit('register',user)
-            alert('注册成功,并且已登录')
+            console.log(user)
+            // user=Object.assign(user,this.resume)
+            // console.log(user)
+            this.$router.push('/login')
+            alert('注册成功,请登录')
         }, function (error) {
             alert(error.rawMessage)
         })
     },
     onClickLogin(){
-        this.$emit("login")
+        this.$router.push("/login")
     }
    },
     template:`

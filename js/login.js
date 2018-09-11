@@ -2,6 +2,7 @@
 window.Login={
     data:function(){
         return {
+            store:store,
             login:{
                 email:'',
                 password:''
@@ -14,8 +15,9 @@ window.Login={
                 user=user.toJSON()
                 // console.log(user)
                 
-                this.$emit('login',user)
-                // this.$router.push('/')
+                // this.$emit('login',user)
+                this.$store.commit("getResume",user)
+                this.$router.push('/')
               }, function (error) {
                   if(error.code===211){
                       alert("该邮箱没有被注册")
@@ -25,7 +27,7 @@ window.Login={
               })
         },
         OnClickRegister(){
-            this.$emit('register')
+            this.$router.push('/register')
         }
     },
     template:`
