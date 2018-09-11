@@ -7,7 +7,7 @@ Vue.component('editable-span',{
     },
    
     template:`
-    <span>
+    <span class="editableSpan">
         <span  v-show="!eidting">{{value}}</span>
         <input v-show="editing"  type="text" v-bind:value='value'  v-on:input="$emit('edit',$event.target.value)" >
         <button v-on:click="editing=!editing" v-if="!disabled">编辑</button>

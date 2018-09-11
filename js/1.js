@@ -1,6 +1,5 @@
 
-// const Main = { template:  `<app-main v-bind:mode="mode" v-on:save="handleSave"></app-main>`}
-// const Bar = { template: `` }
+
 
 
 
@@ -9,7 +8,6 @@ const routes = [
   { path: '/login', component: window.Login },
   { path: '/register', component: window.Register },
   { path: '/share', component: window.Share },
-//   { path: '/bar', component: Bar }
 ]
 
 
