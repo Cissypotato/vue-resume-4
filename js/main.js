@@ -106,7 +106,8 @@ window.Main={
             if (currentUser) {
                 this.saveResume()
             }else {
-               this.showLogin()
+                alert('请先登录哦')
+                this.showLogin()
             }
         },
         showLogin(){

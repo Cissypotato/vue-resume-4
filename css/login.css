@@ -1,3 +1,18 @@
 
-.login{position: fixed;min-width: 400px;min-height: 300px;background: #fff;border: 1px solid #ddd;top: 50%;left: 50%;
-transform: translate(-50%,-50%)}
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px white inset; }
+input[type=text]:focus, input[type=password]:focus, textarea:focus { -webkit-box-shadow: 0 0 0 1000px white inset; }
+
+
+
+.loginForm{position: fixed;min-width: 500px;min-height: 300px;background: #fff;border: 1px solid #ddd;top: 50%;left: 50%;
+transform: translate(-50%,-50%);}
+/* display: flex;flex-direction: column;justify-content: space-between;align-items: center} */
+
+.loginForm>h2{font-weight: 400}
+.loginForm>.close{position: absolute;font-size: 18px;border: 1px solid #eee;border-radius: 50%;width: 32px;height:32px;
+    display: flex;align-items: center ;justify-content: center;background: url(../images/close1.png) center center;
+    top: -16px;right: -16px;}
+.login .row,h2,.lbtns{margin: 20px;}
+.login .row>input{background: none;border: none;border-bottom:1px solid #000;margin-left: 20px;}
+
+.lbtns>button{border: none;background: #000;color: #fff;padding: 4px 6px;}
