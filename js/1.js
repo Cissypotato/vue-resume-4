@@ -28,14 +28,14 @@ const store = new Vuex.Store({
             email:"邮箱",
             phone:"手机",
             skills:[
-                {name:"1",description:"11"},
-                {name:"2",description:"22"},
-                {name:"3",description:"33"},
-                {name:"4",description:"44"},
+                {name:"技能名称",description:"技能描述"},
+                {name:"技能名称",description:"技能描述"},
+                {name:"技能名称",description:"技能描述"},
+                {name:"技能名称",description:"技能描述"},
             ],
             projects:[
-                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
-                {name:"项目名称",keywords:"关键字",link:"项目链接",description:"项目描述"},
+                {name:"项目名称",keywords:"项目描述",link:"项目链接",description:"项目描述"},
+                {name:"项目名称",keywords:"项目描述",link:"项目链接",description:"项目描述"},
             ]
         },
         previewResume:{

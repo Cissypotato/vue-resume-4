@@ -1,2 +1,5 @@
 .btns{display: none}
 .editableSpan>button{display: none}
+
+.projectWrap>.addProject,.skillWrap>.addSkill{display: none}
+.projectWrap>li>.deleteProject,.skillWrap>li>.deleteSkill{display: none;}

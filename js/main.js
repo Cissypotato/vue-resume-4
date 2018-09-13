@@ -71,7 +71,7 @@ window.Main={
         }
     },
     watch:{
-        'currentUser.objectId':function(newValue,oldValue){
+        'this.$store.state.currentUser.objectId':function(newValue,oldValue){
             if(newValue){
                 this.$store.commit('getResume',this.currentUser)
                 // this.getResume(this.currentUser).then((resume)=>{
@@ -82,12 +82,12 @@ window.Main={
     },
     methods:{
         onlogin(user){
-            this.currentUser.objectId=user.objectId
-            this.currentUser.email=user.email
+            this.$store.state.currentUser.objectId=user.objectId
+            this.$store.state.currentUser.email=user.email
         },
         onRegister(user){
-            this.currentUser.objectId=user.objectId
-            this.currentUser.email=user.email
+            this.$store.state.currentUser.objectId=user.objectId
+            this.$store.state.currentUser.email=user.email
         },
         hasShare(){
             if(this.hasLogin()){
@@ -127,19 +127,6 @@ window.Main={
                 alert('保存失败')
             });
         },
-        // getResume(user){
-        //     var query = new AV.Query('User');
-        //     return query.get(user.objectId).then( (loginedUser)=> {
-        //         loginedUser=loginedUser.toJSON()
-        //         let resume= loginedUser.resume 
-        //         return resume
-        //         // Object.assign(this.resume,logined.resume)
-        //         // console.log(this.resume)
-        //     }, function (error) {
-        //         // 异常处理
-        //     });
-
-        // },
         logout(){
             AV.User.logOut();
             // 现在的 currentUser 是 null 了
@@ -148,8 +135,8 @@ window.Main={
             alert("退出成功")
         },
         print(){
-            // var printData = document.getElementById("resume").innerHTML; //获得 div 里的所有 html 数据
-            // window.document.body.innerHTML = printData;   //把 html 里的数据 复制给 body 的 html 数据 ，相当于重置了 整个页面的 内容
+            var printData = document.getElementById("resume").innerHTML; //获得 div 里的所有 html 数据
+            window.document.body.innerHTML = printData;   //把 html 里的数据 复制给 body 的 html 数据 ，相当于重置了 整个页面的 内容
             window.print()
         },
         previewMode(){

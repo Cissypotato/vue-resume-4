@@ -69,17 +69,17 @@ Vue.component('app-resume',{
                             <editable-span  :disabled="modeState==='preview'" v-bind:value="skill.description" v-on:edit="editSkill(index,'description',$event)"></editable-span>
                         </div> 
                        
-                        <span  v-if="index>=4" v-on:click="deleteSkill(index)" v-show="modeState='edit'">x</span>
+                        <span  v-show="index>=4" v-on:click="deleteSkill(index)" v-if="modeState==='edit'" class="deleteSkill" >x</span>
                     </li>
                     
-                    <li v-if="modeState==='edit'">
+                    <li v-if="modeState==='edit'" class="addSkill">
                         <span v-on:click="addSkill">添加</span>
                     </li>
                 </ul>
             </section>
     
     
-            <section class="projiects">
+            <section class="projects">
                     <h2>项目</h2>
                 <ul class="projectWrap" >
                     <li v-for="(project,index) in displayResume.projects">
@@ -87,9 +87,9 @@ Vue.component('app-resume',{
                         <a href="#"><editable-span :disabled="modeState==='preview'" v-bind:value="project.keywords" v-on:edit="editProject(index,'keywords',$event)"></editable-span></a>
                         <p><editable-span :disabled="modeState==='preview'" v-bind:value="project.link" v-on:edit="editProject(index,'link',$event)"></editable-span></p>
                         <p><editable-span :disabled="modeState==='preview'" v-bind:value="project.description" v-on:edit="editProject(index,'description',$event)"></editable-span></p>
-                        <span  v-if="index>=2" v-on:click="deleteProject(index)" v-show="modeState='edit'">x</span>
+                        <span  v-show="index>=2" v-on:click="deleteProject(index)" v-if="modeState==='edit'" class="deleteProject">x</span>
                     </li>
-                    <li v-if="modeState ==='edit'">
+                    <li v-if="modeState ==='edit'" class="addProject">
                         <span v-on:click="addProject">添加</span>
                     </li>
                 </ul>

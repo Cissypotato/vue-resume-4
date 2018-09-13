@@ -2,7 +2,7 @@
 window.Login={
     data:function(){
         return {
-            store:store,
+            // store:store,
             login:{
                 email:'',
                 password:''
@@ -32,19 +32,22 @@ window.Login={
     },
     template:`
     <div class="login" v-on:submit.prevent="onLogin">
-        <form action="">    
-            <router-link to="/">关闭</router-link>
+        <form action="" class="loginForm">    
+            <router-link to="/" class="close">x</router-link>
             <h2>登录</h2>
             <div class="row">
-                <label>邮箱</label>
+                <label>邮箱:</label>
                 <input type="email" v-model="login.email">
             </div>
             <div class="row">
-                <label>密码</label>
+                <label>密码:</label>
                 <input type="password" v-model="login.password">
             </div>
-            <button type="submit">提交</button>
-            <router-link to="/register">注册</router-link>
+            <div class="lbtns">
+                <button type="submit" class="Lsubmit">提交</button>
+                <router-link to="/register" class="lregister">注册</router-link>
+            </div>
+            
         </form>
     </div>
     `
