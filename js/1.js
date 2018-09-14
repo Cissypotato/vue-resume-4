@@ -91,15 +91,17 @@ var app = new Vue({
         // editing:false,
         
     },
-    // watch:{
-    //     'currentUser.objectId':function(newValue,oldValue){
-    //         if(newValue){
-    //             this.getResume(this.currentUser).then((resume)=>{
-    //                 this.resume=resume
-    //             })
-    //         }
-    //     }
-    // },
+
+    watch:{
+        'this.store.state.currentUser.objectId':function(newValue,oldValue){
+            if(newValue){
+                this.store.commit('getResume',this.currentUser)
+                // this.getResume(this.currentUser).then((resume)=>{
+                //     this.resume=resume
+                // })
+            }
+        }
+    },
     methods:{
    
         getResume(user){
@@ -130,11 +132,6 @@ if (currentUser){
     console.log(store.state.currentUser)
     store.state.shareLink=location.origin+location.pathname+'?user_id='+store.state.currentUser.objectId
     store.commit("getResume",store.state.currentUser)
-    // .then((resume) =>{
-    //     console.log(resume)
-    //     app.data().resume = resume 
-    //     console.log(app.data().resume)
-    // })
     
 }
 
@@ -151,9 +148,6 @@ if(matches){
     userId=matches[1]
     store.commit('changeMode',"preview")
     store.commit('getResume',{objectId:userId})
-    // app.getResume({objectId:userId}).then(resume=>{
-    //     app.previewResume=resume
-    // })
     console.log('预览模式')
     console.log(store.state.mode)
 }else{

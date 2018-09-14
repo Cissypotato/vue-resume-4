@@ -39,9 +39,8 @@ window.Register={
         user.set('resume', this.resume);
         user.signUp().then( (loggedInUser)=> {
             user=loggedInUser.toJSON()
-            console.log(user)
-            // user=Object.assign(user,this.resume)
-            // console.log(user)
+            this.$store.state.currentUser.objectId=user.objectId
+            this.$store.state.currentUser.email=user.email
             this.$router.push('/login')
             alert('注册成功,请登录')
         }, function (error) {
@@ -54,19 +53,22 @@ window.Register={
    },
     template:`
     <div class="register"  v-on:submit.prevent="onRegister">
-        <form action="">
-        <router-link to="/">关闭</router-link>
+        <form action="" class="registerForm">
+            <router-link to="/" class="closeRegister">x</router-link>
             <h2>注册</h2>
             <div class="row">
-                <label>邮箱</label>
+                <label>邮箱:</label>
                 <input type="email" v-model="register.email">
             </div>
             <div class="row">
-                <label>密码</label>
+                <label>密码:</label>
                 <input type="password" v-model="register.password">
             </div>
-            <button type="submit">提交</button>
-            <router-link to="/login">登录</router-link>
+            <div class="rbtns">
+                <button type="submit">提交</button>
+                <router-link to="/login" class="rlogin">登录</router-link>
+            </div>
+            
         </form>
     </div>
     `

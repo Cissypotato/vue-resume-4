@@ -7,13 +7,13 @@ a{color: inherit;text-decoration: none;}
 ul,ol{list-style: none;}
 
 
-body{width: 100%;height: 100vh;overflow: hidden;}
+body.default{width: 100%;height: 100vh;overflow: hidden;}
 
 .page{width: 100%;height: 100vh;overflow: auto;margin:0 auto;margin-top: 40px;}
 
 .resume{width: 70%;margin: 0 auto;text-align: center;overflow: auto;padding-bottom: 60px;margin-top: 50px}
-.btns{position: fixed;top: 0;left: 0;width: 32%;padding: 8px 20px;padding-top: 14px;text-align: center;
-    height: 40px;border-bottom: 1px solid #000;}
+.btns{position: fixed;top: 0;left: 0;width: 28%;padding: 8px 20px;padding-top: 14px;text-align: center;
+    height: 40px;border-bottom: 1px solid #000;background: #fff}
 .btns::after{content: '';display: block;background: #000;width: 8px;height: 8px;border-radius: 50%;position: absolute;
     right: -4px;bottom: -1px;}
 .btns>button{margin: 0 8px;position: relative;border: none;background: none;}

@@ -6,7 +6,7 @@ window.Main={
         return{
             store:store,
             editingName:false,
-            skinVisible:false,
+            skinVisible:true,
             shareLink:"unknown",
             // mode:'edit',//'preview',
             previewUser:{previewUserId:undefined},
@@ -68,7 +68,8 @@ window.Main={
         },
         modeState(){
             return this.$store.state.mode
-        }
+        },
+        
     },
     watch:{
         'this.$store.state.currentUser.objectId':function(newValue,oldValue){
@@ -131,7 +132,7 @@ window.Main={
             AV.User.logOut();
             // 现在的 currentUser 是 null 了
             var currentUser = AV.User.current();
-            this.currentUser={email:undefined,objectId:undefined}
+            this.$store.state.currentUser={email:undefined,objectId:undefined}
             alert("退出成功")
         },
         print(){
@@ -145,6 +146,16 @@ window.Main={
         editMode(){
             this.$store.commit('changeMode','edit')
         },
+        changeSkin(){
+            console.log('skin')
+            if(this.skinVisible===true){
+                document.body.className='dark'
+                this.skinVisible=false
+            }else{
+                document.body.className='default'
+                this.skinVisible=true
+            }
+        }
         
     },
    
@@ -155,7 +166,6 @@ window.Main={
             <button v-on:click="handleSave">保存</button>
             <button v-on:click="hasShare()">分享</button>
             <button v-on:click="print">打印</button>
-            <button v-on:click="skinVisible=!skinVisible">换肤</button>
             <button v-on:click="previewMode">预览</button>
             <button v-on:click="logout" v-show="hasLogin()">登出</button>
         </div>
@@ -164,7 +174,6 @@ window.Main={
         <div class="quitPreview" v-if="modeState==='preview'">
             <button v-on:click="editMode">退出预览</button>
         </div>
-        <skin v-show="skinVisible"></skin>
     </div>
     
     `

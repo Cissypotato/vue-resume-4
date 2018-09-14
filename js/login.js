@@ -13,6 +13,8 @@ window.Login={
         onLogin(e){
             AV.User.logIn(this.login.email, this.login.password).then( (user)=> {
                 user=user.toJSON()
+                this.$store.state.currentUser.objectId=user.objectId
+                this.$store.state.currentUser.email=user.email
                 // console.log(user)
                 
                 // this.$emit('login',user)
@@ -33,7 +35,7 @@ window.Login={
     template:`
     <div class="login" v-on:submit.prevent="onLogin">
         <form action="" class="loginForm">    
-            <router-link to="/" class="close">x</router-link>
+            <router-link to="/" class="closeLogin">x</router-link>
             <h2>登录</h2>
             <div class="row">
                 <label>邮箱:</label>
