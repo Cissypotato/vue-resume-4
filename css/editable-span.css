@@ -1,5 +1,6 @@
 .editableSpan{position: relative}
-.editableSpan>button{border: none;background: #eee;font-size: 12px;color: #777}
+.editableSpan>button{border: none;background: #eee;font-size: 12px;color: #777;outline: none}
+.editableSpan>input{border: none;outline: none;border-bottom:1px solid #777 }
 
 
 
