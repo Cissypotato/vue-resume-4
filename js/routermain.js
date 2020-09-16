@@ -1,8 +1,5 @@
 
 
-
-
-
 const routes = [
   { path: '/', component: window.Main },
   { path: '/login', component: window.Login },

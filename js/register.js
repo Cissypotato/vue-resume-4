@@ -31,6 +31,7 @@ window.Register={
     onRegister(e){
         var user = new AV.User();
         // 设置用户名
+        console.log(this.register)
         user.setUsername(this.register.email);
         // 设置密码
         user.setPassword(this.register.password);
